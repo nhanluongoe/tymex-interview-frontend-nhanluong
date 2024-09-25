@@ -26,7 +26,9 @@
       "@modules/*": ["src/modules/*"],
       "@components/*": ["src/components/*"],
       "@routes/*": ["src/routes/*"],
+      "@libs/*": ["src/libs/*"],
       "@styles/*": ["src/styles/*"],
+      "@assets/*": ["src/assets/*"],
     }
   },
   "include": ["src"]

@@ -10,7 +10,7 @@ const ITEMS: Item[] = [
   {
     name: "phone",
     content: (
-      <Typography>
+      <Typography key="phone">
         <a href="tel:01234568910">01234568910</a>
       </Typography>
     ),
@@ -18,7 +18,7 @@ const ITEMS: Item[] = [
   {
     name: "email",
     content: (
-      <Typography>
+      <Typography key="email">
         <a href="mailto:tymex-talent@tyme.com">tymex-talent@tyme.com</a>
       </Typography>
     ),

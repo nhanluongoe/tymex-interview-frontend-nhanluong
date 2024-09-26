@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
 import Button from "@components/ui/Button";
+import { useToken } from "../contexts/TokenContext";
 
 interface FormValue {
   priceRange: [number, number];
@@ -18,9 +19,11 @@ interface FormValue {
 }
 
 export default function TokenFilters() {
+  const { handleFiltersChange } = useToken();
+
   const { handleSubmit: hookFormHandleSubmit, control } = useForm<FormValue>({
     defaultValues: {
-      priceRange: [0, 100],
+      priceRange: [0, Infinity],
       tier: "all",
       theme: "halloween",
       time: "dsc",
@@ -30,6 +33,13 @@ export default function TokenFilters() {
 
   const handleSubmit = hookFormHandleSubmit((data) => {
     console.log(data);
+    handleFiltersChange({
+      range: data.priceRange,
+      tier: data.tier,
+      theme: data.theme,
+      time: data.time,
+      price: data.price,
+    });
   });
 
   return (

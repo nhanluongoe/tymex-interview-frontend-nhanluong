@@ -8,14 +8,15 @@ export default function FooterSubscription() {
         sx={{
           border: "1px solid white",
           color: "white",
-          borderRadius: "4px",
-          padding: "8px",
-          width: "75%",
-          marginRight: "8px",
+          borderRadius: 1,
+          px: 2,
+          py: 1,
+          minWidth: "75%",
+          marginRight: 2,
         }}
-        placeholder="Enter your email"
+        placeholder="Your email address"
       />
-      <Button>Subscribe</Button>
+      <Button sx={{ flexGrow: 1 }}>Subscribe</Button>
     </Box>
   );
 }

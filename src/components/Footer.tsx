@@ -1,8 +1,9 @@
-import { Box, Container, Divider, Typography } from "@mui/material";
+import { Box, Container, Divider, Stack, Typography } from "@mui/material";
 import React from "react";
 import FooterNavigation from "./FooterNavigation";
 import FooterContactUs from "./FooterContactUs";
 import FooterSubscription from "./FooterSubscription";
+import { Link } from "react-router-dom";
 
 interface Section {
   title: string;
@@ -14,6 +15,7 @@ const SECTION: Section[] = [
   {
     title: "navigation",
     content: <FooterNavigation />,
+    width: 35,
   },
   {
     title: "contact us",
@@ -22,7 +24,7 @@ const SECTION: Section[] = [
   {
     title: "subscribe to receive our latest update",
     content: <FooterSubscription />,
-    width: 45,
+    width: 40,
   },
 ];
 
@@ -33,6 +35,9 @@ export default function Footer() {
       maxWidth={false}
       sx={{
         width: "100vw",
+        mt: 3,
+        mb: 6,
+        backgroundColor: "#17161A",
       }}
     >
       <Box
@@ -47,7 +52,14 @@ export default function Footer() {
             key={section.title}
             sx={{ width: section.width ? `${section.width}%` : undefined }}
           >
-            <Typography sx={{ textTransform: "uppercase" }}>
+            <Typography
+              sx={{
+                textTransform: "uppercase",
+                fontWeight: "bold",
+                mb: 2,
+                fontSize: 20,
+              }}
+            >
               {section.title}
             </Typography>
             {section.content}
@@ -55,11 +67,15 @@ export default function Footer() {
         ))}
       </Box>
 
-      <Divider sx={{ borderColor: "white" }} />
+      <Divider sx={{ borderColor: "gray", my: 5 }} />
 
       <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-        <Typography>&copy; 2021 TymeX - Edit. All rights reserved.</Typography>
-        <Typography>Privacy Policy</Typography>
+        <Typography>&copy; 2023 Tyme - Edit. All rights reserved.</Typography>
+        <Stack direction="row" spacing={2}>
+          <Link to="#">Security</Link>
+          <Link to="#">Legal</Link>
+          <Link to="#">Privacy</Link>
+        </Stack>
       </Box>
     </Container>
   );

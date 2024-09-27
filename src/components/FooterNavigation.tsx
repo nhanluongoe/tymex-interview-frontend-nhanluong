@@ -14,28 +14,8 @@ const NAVIGATION: Navigation[] = [
     href: "#",
   },
   {
-    name: "about us",
-    label: "About us",
-    href: "#",
-  },
-  {
-    name: "our teams",
-    label: "Our teams",
-    href: "#",
-  },
-  {
     name: "white paper",
     label: "White paper",
-    href: "#",
-  },
-  {
-    name: "marketplace",
-    label: "Marketplace",
-    href: "#",
-  },
-  {
-    name: "roadmap",
-    label: "Roadmap",
     href: "#",
   },
   {
@@ -44,8 +24,28 @@ const NAVIGATION: Navigation[] = [
     href: "#",
   },
   {
+    name: "about us",
+    label: "About us",
+    href: "#",
+  },
+  {
+    name: "marketplace",
+    label: "Marketplace",
+    href: "#",
+  },
+  {
     name: "news",
     label: "News",
+    href: "#",
+  },
+  {
+    name: "our teams",
+    label: "Our teams",
+    href: "#",
+  },
+  {
+    name: "roadmap",
+    label: "Roadmap",
     href: "#",
   },
   {
@@ -58,9 +58,15 @@ const NAVIGATION: Navigation[] = [
 export default function FooterNavigation() {
   return (
     <Box>
-      <Grid2 container>
+      <Grid2 container spacing={1.5}>
         {NAVIGATION.map((nav) => (
-          <Grid2 size={4} key={nav.name}>
+          <Grid2
+            size={4}
+            key={nav.name}
+            sx={{
+              color: "white",
+            }}
+          >
             <Link to={nav.href}>{nav.label}</Link>
           </Grid2>
         ))}

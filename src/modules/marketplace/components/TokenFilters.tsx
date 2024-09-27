@@ -1,14 +1,17 @@
+import Button from "@components/ui/Button";
+import RangeInput from "@components/ui/RangeInput";
 import {
   Box,
   FormControl,
   MenuItem,
   Select,
-  Slider,
+  Stack,
   Typography,
 } from "@mui/material";
+import { pink } from "@mui/material/colors";
 import { Controller, useForm } from "react-hook-form";
-import Button from "@components/ui/Button";
 import { useToken } from "../contexts/TokenContext";
+import CrossIcon from "./icons/CrossIcon";
 
 interface FormValue {
   priceRange: [number, number];
@@ -23,7 +26,7 @@ export default function TokenFilters() {
 
   const { handleSubmit: hookFormHandleSubmit, control } = useForm<FormValue>({
     defaultValues: {
-      priceRange: [0, Infinity],
+      priceRange: [0, 200],
       tier: "all",
       theme: "all",
       time: "dsc",
@@ -43,19 +46,40 @@ export default function TokenFilters() {
   });
 
   return (
-    <Box component="form" sx={{ px: "16px" }} onSubmit={handleSubmit}>
+    <Stack component="form" sx={{ px: 4 }} spacing={3} onSubmit={handleSubmit}>
       <Controller
         control={control}
         name="priceRange"
         render={({ field: { onChange, value } }) => (
-          <Slider
-            getAriaLabel={() => "Price range"}
-            value={value}
-            onChange={onChange}
-            valueLabelDisplay="auto"
-            valueLabelFormat={(val) => `${val} ETH`}
-            getAriaValueText={(val) => `${val} ETH`}
-          />
+          <>
+            <Typography color="white">PRICE</Typography>
+            <RangeInput
+              getAriaLabel={() => "Price range"}
+              value={value}
+              min={0}
+              max={200}
+              step={0.01}
+              onChange={onChange}
+              valueLabelDisplay="auto"
+              valueLabelFormat={(val) => `${val} ETH`}
+              getAriaValueText={(val) => `${val} ETH`}
+              sx={{
+                color: pink[500],
+              }}
+            />
+            <Box>
+              <Typography
+                sx={{
+                  color: "#d6d6d6",
+                  display: "flex",
+                  justifyContent: "space-between",
+                }}
+              >
+                <span>0 ETH</span>
+                <span>200 ETH</span>
+              </Typography>
+            </Box>
+          </>
         )}
       ></Controller>
 
@@ -64,7 +88,14 @@ export default function TokenFilters() {
         name="tier"
         render={({ field: { onChange, value } }) => (
           <FormControl fullWidth>
-            <Typography>TIER</Typography>
+            <Typography
+              sx={{
+                color: "#89888B",
+                mb: 1.5,
+              }}
+            >
+              TIER
+            </Typography>
             <Select
               value={value}
               onChange={onChange}
@@ -93,7 +124,14 @@ export default function TokenFilters() {
         name="theme"
         render={({ field: { onChange, value } }) => (
           <FormControl fullWidth>
-            <Typography>THEME</Typography>
+            <Typography
+              sx={{
+                color: "#89888B",
+                mb: 1.5,
+              }}
+            >
+              THEME
+            </Typography>
             <Select
               value={value}
               onChange={onChange}
@@ -119,7 +157,14 @@ export default function TokenFilters() {
         name="time"
         render={({ field: { onChange, value } }) => (
           <FormControl fullWidth>
-            <Typography>TIME</Typography>
+            <Typography
+              sx={{
+                color: "#89888B",
+                mb: 1.5,
+              }}
+            >
+              TIME
+            </Typography>
             <Select
               value={value}
               onChange={onChange}
@@ -144,7 +189,14 @@ export default function TokenFilters() {
         name="price"
         render={({ field: { onChange, value } }) => (
           <FormControl fullWidth>
-            <Typography>PRICE</Typography>
+            <Typography
+              sx={{
+                color: "#89888B",
+                mb: 1.5,
+              }}
+            >
+              PRICE
+            </Typography>
             <Select
               value={value}
               onChange={onChange}
@@ -164,7 +216,21 @@ export default function TokenFilters() {
         )}
       ></Controller>
 
-      <Button type="submit">Search</Button>
-    </Box>
+      <Box
+        sx={{
+          width: "90%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
+        <Button variant="text" startIcon={<CrossIcon />}>
+          Reset filter
+        </Button>
+        <Button type="submit" sx={{ width: "50%" }}>
+          Search
+        </Button>
+      </Box>
+    </Stack>
   );
 }

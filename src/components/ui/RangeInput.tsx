@@ -1,13 +1,13 @@
 import { Slider, SliderProps, styled } from "@mui/material";
-import { pink } from "@mui/material/colors";
 
-const CustomizedSlider = styled(Slider)({
-  color: pink[500],
+const CustomizedSlider = styled(Slider)(({ theme }) => ({
+  textTransform: "none",
+  color: theme.palette.primary.main,
   "& .MuiSlider-thumb": {
-    color: pink[500],
+    color: theme.palette.primary.main,
   },
   "& .MuiSlider-track": {
-    color: pink[500],
+    color: theme.palette.primary.main,
     height: "20%",
   },
   "& .MuiSlider-rail": {
@@ -18,9 +18,9 @@ const CustomizedSlider = styled(Slider)({
     color: "#D6D6D6",
   },
   "& .MuiSlider-valueLabel": {
-    backgroundColor: pink[500],
+    backgroundColor: theme.palette.primary.main,
   },
-});
+}));
 
 export default function RangeInput(props: SliderProps) {
   return <CustomizedSlider {...props} />;

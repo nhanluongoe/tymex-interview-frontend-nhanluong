@@ -4,11 +4,11 @@ import { styled } from "@mui/material/styles";
 
 const FilledButton = styled(Button)<Omit<MuiButtonProps, "variant">>(
   ({ theme }) => ({
-    color: theme.palette.getContrastText(pink[500]),
-    backgroundColor: pink[400],
+    color: "white",
+    backgroundColor: `linear-gradient(90deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.light} 100%);`,
     fontWeight: "bold",
     "&:hover": {
-      backgroundColor: pink[700],
+      backgroundColor: theme.palette.primary.dark,
     },
   })
 );
@@ -21,14 +21,16 @@ const TextButton = styled(Button)<Omit<MuiButtonProps, "variant">>(() => ({
   },
 }));
 
-const OutlinedButton = styled(Button)<Omit<MuiButtonProps, "variant">>(() => ({
-  color: pink[400],
-  fontWeight: "bold",
-  borderColor: pink[400],
-  "&:hover": {
-    borderColor: pink[700],
-  },
-}));
+const OutlinedButton = styled(Button)<Omit<MuiButtonProps, "variant">>(
+  ({ theme }) => ({
+    color: theme.palette.primary.main,
+    fontWeight: "bold",
+    borderColor: theme.palette.primary.main,
+    "&:hover": {
+      borderColor: theme.palette.primary.dark,
+    },
+  })
+);
 
 const BUTTON_VARIANTS = {
   contained: FilledButton,

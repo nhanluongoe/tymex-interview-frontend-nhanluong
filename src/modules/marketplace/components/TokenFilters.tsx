@@ -25,7 +25,7 @@ export default function TokenFilters() {
     defaultValues: {
       priceRange: [0, Infinity],
       tier: "all",
-      theme: "halloween",
+      theme: "all",
       time: "dsc",
       price: "asc",
     },
@@ -49,7 +49,7 @@ export default function TokenFilters() {
         name="priceRange"
         render={({ field: { onChange, value } }) => (
           <Slider
-            getAriaLabel={() => "Temperature range"}
+            getAriaLabel={() => "Price range"}
             value={value}
             onChange={onChange}
             valueLabelDisplay="auto"
@@ -81,6 +81,7 @@ export default function TokenFilters() {
               <MenuItem value="common">Common</MenuItem>
               <MenuItem value="rare">Rare</MenuItem>
               <MenuItem value="epic">Epic</MenuItem>
+              <MenuItem value="mythic">Mythic</MenuItem>
               <MenuItem value="legendary">Legendary</MenuItem>
             </Select>
           </FormControl>
@@ -105,6 +106,7 @@ export default function TokenFilters() {
                 },
               }}
             >
+              <MenuItem value="all">All</MenuItem>
               <MenuItem value="halloween">Halloween</MenuItem>
               <MenuItem value="rocknroll">Rock n Roll</MenuItem>
             </Select>

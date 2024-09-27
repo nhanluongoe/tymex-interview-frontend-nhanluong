@@ -9,9 +9,10 @@ export interface Token {
   createdAt: string;
   theme: string;
   author: string;
+  authorAvatar: string;
 }
 
-export interface TokenParams{
+export interface TokenParams {
   start: number;
   limit: number;
   range: [number, number];
@@ -31,7 +32,7 @@ export class TokenService {
   static async getTokens(urlParams: Partial<TokenParams>) {
     const {
       limit = 10,
-      range = [],
+      range = [0, Infinity],
       tier = "",
       theme = "",
       time = "",

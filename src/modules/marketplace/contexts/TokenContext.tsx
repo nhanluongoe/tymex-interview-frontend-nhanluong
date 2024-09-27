@@ -1,19 +1,20 @@
+import { useInfiniteQuery } from "@tanstack/react-query";
 import { createContext, useContext, useState } from "react";
 import { Token, TokenParams, TokenService } from "../services/token";
-import { Optional, useQuery } from "@tanstack/react-query";
 
-type Filters = Optional<TokenParams, "limit">;
+type Filters = Partial<TokenParams>;
 
 interface TokenContextType {
   tokens: Token[];
+  filters: Filters;
   handleFiltersChange: (filters: Filters) => void;
+  fetchNextPage: () => void;
 }
 
 const TokenContext = createContext<TokenContextType | undefined>(undefined);
 
 export function TokenProvider({ children }: { children: React.ReactNode }) {
   const [filters, setFilters] = useState<Filters>({
-    limit: 10,
     range: [0, Infinity],
     tier: "",
     time: "",
@@ -21,7 +22,7 @@ export function TokenProvider({ children }: { children: React.ReactNode }) {
     price: "",
   });
 
-  const { data } = useQuery({
+  const { data, fetchNextPage } = useInfiniteQuery({
     queryKey: [
       "tokens",
       filters.price,
@@ -30,13 +31,29 @@ export function TokenProvider({ children }: { children: React.ReactNode }) {
       filters.range,
       filters.time,
     ],
-    queryFn: () => TokenService.getTokens({ ...filters }),
+    initialPageParam: 0,
+    queryFn: ({ pageParam = 0 }) => {
+      return TokenService.getTokens({
+        ...filters,
+        start: pageParam,
+        limit: 20,
+      });
+    },
+    getNextPageParam: (lastPage) => {
+      return lastPage.data.start + lastPage.data.limit;
+    },
   });
 
-  const tokens = data?.data || [];
+  const handleFiltersChange = (filters: Filters) => {
+    setFilters((f) => ({ ...f, ...filters }));
+  };
+
+  const tokens = data?.pages.flatMap((page) => page.data.data) || [];
 
   return (
-    <TokenContext.Provider value={{ tokens, handleFiltersChange: setFilters }}>
+    <TokenContext.Provider
+      value={{ filters, tokens, handleFiltersChange, fetchNextPage }}
+    >
       {children}
     </TokenContext.Provider>
   );

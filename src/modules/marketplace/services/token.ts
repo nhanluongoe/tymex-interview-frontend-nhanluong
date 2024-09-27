@@ -12,12 +12,19 @@ export interface Token {
 }
 
 export interface TokenParams{
+  start: number;
   limit: number;
   range: [number, number];
   tier: string;
   theme: string;
   time: string;
   price: string;
+}
+
+export interface TokenResponse {
+  data: Token[];
+  limit: number;
+  start: number;
 }
 
 export class TokenService {
@@ -29,16 +36,18 @@ export class TokenService {
       theme = "",
       time = "",
       price = "",
+      start = 0,
     } = urlParams;
     const URLparams = new URLSearchParams({
+      start: start.toString(),
       limit: limit.toString(),
-      range: range?.join(","),
+      range: range.join(","),
       tier,
       theme,
       time,
       price,
     });
 
-    return http.get<Token[]>(`/token/?${URLparams.toString()}`);
+    return http.get<TokenResponse>(`/token/?${URLparams.toString()}`);
   }
 }

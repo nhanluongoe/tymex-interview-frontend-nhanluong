@@ -8,7 +8,6 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import { pink } from "@mui/material/colors";
 import { Controller, useForm } from "react-hook-form";
 import { useToken } from "../contexts/TokenContext";
 import CrossIcon from "./icons/CrossIcon";
@@ -22,7 +21,7 @@ interface FormValue {
 }
 
 export default function TokenFilters() {
-  const { handleFiltersChange } = useToken();
+  const { handleFiltersChange, resetFilters } = useToken();
 
   const { handleSubmit: hookFormHandleSubmit, control } = useForm<FormValue>({
     defaultValues: {
@@ -63,9 +62,6 @@ export default function TokenFilters() {
               valueLabelDisplay="auto"
               valueLabelFormat={(val) => `${val} ETH`}
               getAriaValueText={(val) => `${val} ETH`}
-              sx={{
-                color: pink[500],
-              }}
             />
             <Box>
               <Typography
@@ -224,7 +220,7 @@ export default function TokenFilters() {
           justifyContent: "space-between",
         }}
       >
-        <Button variant="text" startIcon={<CrossIcon />}>
+        <Button variant="text" startIcon={<CrossIcon />} onClick={resetFilters}>
           Reset filter
         </Button>
         <Button type="submit" sx={{ width: "50%" }}>

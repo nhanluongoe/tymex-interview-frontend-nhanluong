@@ -8,19 +8,22 @@ interface TokenContextType {
   tokens: Token[];
   filters: Filters;
   handleFiltersChange: (filters: Filters) => void;
+  resetFilters: () => void;
   fetchNextPage: () => void;
 }
 
 const TokenContext = createContext<TokenContextType | undefined>(undefined);
 
+const initialFilters: Filters = {
+  range: [0, Infinity],
+  tier: "",
+  time: "",
+  theme: "",
+  price: "",
+};
+
 export function TokenProvider({ children }: { children: React.ReactNode }) {
-  const [filters, setFilters] = useState<Filters>({
-    range: [0, Infinity],
-    tier: "",
-    time: "",
-    theme: "",
-    price: "",
-  });
+  const [filters, setFilters] = useState<Filters>(initialFilters);
 
   const { data, fetchNextPage } = useInfiniteQuery({
     queryKey: [
@@ -48,11 +51,21 @@ export function TokenProvider({ children }: { children: React.ReactNode }) {
     setFilters((f) => ({ ...f, ...filters }));
   };
 
+  const resetFilters = () => {
+    setFilters(initialFilters);
+  };
+
   const tokens = data?.pages.flatMap((page) => page.data.data) || [];
 
   return (
     <TokenContext.Provider
-      value={{ filters, tokens, handleFiltersChange, fetchNextPage }}
+      value={{
+        filters,
+        tokens,
+        handleFiltersChange,
+        resetFilters,
+        fetchNextPage,
+      }}
     >
       {children}
     </TokenContext.Provider>

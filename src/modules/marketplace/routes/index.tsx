@@ -7,7 +7,7 @@ const routes: RouteObject[] = [
     path: "marketplace",
     element: (
       <TokenProvider>
-        <MarketPlacePage />,
+        <MarketPlacePage />
       </TokenProvider>
     ),
   },

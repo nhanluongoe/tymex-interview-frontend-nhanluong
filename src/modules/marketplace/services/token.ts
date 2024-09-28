@@ -20,6 +20,7 @@ export interface TokenParams {
   theme: string;
   time: string;
   price: string;
+  category: string;
 }
 
 export interface TokenResponse {
@@ -37,6 +38,7 @@ export class TokenService {
       theme = "",
       time = "",
       price = "",
+      category = "",
       start = 0,
     } = urlParams;
     const URLparams = new URLSearchParams({
@@ -47,6 +49,7 @@ export class TokenService {
       theme,
       time,
       price,
+      category,
     });
 
     return http.get<TokenResponse>(`/token/?${URLparams.toString()}`);

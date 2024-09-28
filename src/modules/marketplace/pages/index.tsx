@@ -1,8 +1,10 @@
 import Button from "@components/ui/Button";
+import Tabs from "@components/ui/Tabs";
 import useBreakpoints from "@hooks/useBreakpoints";
+import useWindowDimensions from "@hooks/useWindowDimension";
 import { FilterAlt } from "@mui/icons-material";
 import { Box, Drawer, Grid2 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Banner from "../assets/images/banner.png";
 import LightLines from "../assets/images/light-lines.png";
 import TokenCard from "../components/TokenCard";
@@ -11,10 +13,30 @@ import { useToken } from "../contexts/TokenContext";
 
 export default function MarketPlacePage() {
   const { tokens, fetchNextPage } = useToken();
-
   const { isTablet } = useBreakpoints();
-
   const [showFiltersOnTablet, setShowFiltersOnTablet] = useState(false);
+
+  const leftSectionRef = useRef<HTMLDivElement>(null);
+  const [rightSectionWidth, setRightSectionWidth] = useState(0);
+  const { width: windowWidth } = useWindowDimensions();
+
+  useEffect(() => {
+    const leftSectionWidth = leftSectionRef.current?.clientWidth || 0;
+
+    const handleResize = () => {
+      const viewWidth = windowWidth;
+      const offset = isTablet ? 8 : 56;
+      const newRightSectionWidth = viewWidth - leftSectionWidth - offset * 2;
+      setRightSectionWidth(newRightSectionWidth);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [windowWidth, isTablet]);
 
   const handleToggleFilters = (newOpen: boolean) => () => {
     setShowFiltersOnTablet(newOpen);
@@ -35,7 +57,7 @@ export default function MarketPlacePage() {
         sx={{
           backgroundImage: "url(/background.png)",
           backgroundPosition: "auto",
-          pt: 8,
+          pt: isTablet ? 2 : 8,
         }}
       >
         {isTablet && (
@@ -67,11 +89,14 @@ export default function MarketPlacePage() {
           }}
         >
           {!isTablet && (
-            <Box sx={{ minWidth: "25%" }}>
+            <Box ref={leftSectionRef} sx={{ minWidth: "25%" }}>
               <TokenFilters />
             </Box>
           )}
           <Box sx={{ mb: 8, flexGrow: 1 }}>
+            <Box sx={{ width: `${rightSectionWidth}px`, my: 3 }}>
+              <Tabs />
+            </Box>
             <Grid2 container spacing={2} columns={12}>
               {tokens.map((token) => (
                 <Grid2

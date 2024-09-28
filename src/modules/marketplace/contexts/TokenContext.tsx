@@ -20,6 +20,7 @@ const initialFilters: Filters = {
   time: "",
   theme: "",
   price: "",
+  category: "",
 };
 
 export function TokenProvider({ children }: { children: React.ReactNode }) {
@@ -33,6 +34,7 @@ export function TokenProvider({ children }: { children: React.ReactNode }) {
       filters.tier,
       filters.range,
       filters.time,
+      filters.category,
     ],
     initialPageParam: 0,
     queryFn: ({ pageParam = 0 }) => {

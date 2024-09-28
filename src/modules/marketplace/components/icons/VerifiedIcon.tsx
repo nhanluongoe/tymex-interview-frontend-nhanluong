@@ -23,8 +23,8 @@ export default function VerifiedIcon(props: SvgIconProps) {
           y2="2.51708"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stop-color="#49DD81" />
-          <stop offset="1" stop-color="#22B4C6" />
+          <stop stopColor="#49DD81" />
+          <stop offset="1" stopColor="#22B4C6" />
         </linearGradient>
         <clipPath id="clip0_28_185">
           <rect x="2" y="2" width="8" height="8" rx="4" fill="white" />

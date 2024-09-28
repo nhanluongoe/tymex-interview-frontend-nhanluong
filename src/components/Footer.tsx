@@ -34,7 +34,6 @@ export default function Footer() {
       component="footer"
       maxWidth={false}
       sx={{
-        width: "100vw",
         mt: 3,
         mb: 6,
         backgroundColor: "#17161A",

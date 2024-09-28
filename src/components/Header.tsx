@@ -1,4 +1,4 @@
-import { Box, styled } from "@mui/material";
+import { Box, Container, NativeSelect, styled } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import Button from "./ui/Button";
 
@@ -15,38 +15,62 @@ const NAVIGATION: Navigation[] = [
     path: "",
   },
   {
+    name: "about-us",
+    label: "About us",
+    path: "about",
+  },
+  {
     name: "marketplace",
     label: "Marketplace",
     path: "marketplace",
   },
   {
-    name: "about",
-    label: "About",
-    path: "about",
-  },
-  {
-    name: "contact",
-    label: "Contact",
-    path: "contact",
+    name: "white-paper",
+    label: "White paper",
+    path: "white-paper",
   },
 ];
 
 const StyledNavLink = styled(NavLink)(({ theme }) => ({
   color: "white",
+  textTransform: "uppercase",
+  fontWeight: "bold",
   textDecoration: "none",
+  position: "relative",
   "&.active": {
-    color: theme.palette.primary.main,
+    background: `linear-gradient(90deg, ${theme.palette.primary.main} 0%, ${theme.palette.primary.light} 100%)`,
+    color: "transparent",
+    WebkitBackgroundClip: "text",
+    backgroundClip: "text",
+
+    ":before": {
+      content: "''",
+      position: "absolute",
+      color: "red",
+      top: 0,
+      left: 1,
+      width: "20%",
+      height: "100%",
+      borderBottom: `2px solid ${theme.palette.primary.main}`,
+    },
   },
 }));
 
+const StyledSelect = styled(NativeSelect)({
+  color: "white",
+  "& .MuiNativeSelect-icon": {
+    color: "white",
+  },
+});
+
 export default function Header() {
   return (
-    <Box
+    <Container
       component="header"
+      maxWidth={false}
       sx={{
         position: "fixed",
         top: 0,
-        width: "100%",
         backgroundColor: "rgba(23, 22, 26, 0.7)",
       }}
     >
@@ -78,10 +102,16 @@ export default function Header() {
           ))}
         </Box>
 
-        <Box>
-          <Button>Connect Wallet</Button>
+        <Box
+          sx={{ minWidth: "25%", display: "flex", justifyContent: "center" }}
+        >
+          <Button sx={{ mr: 2 }}>Connect Wallet</Button>
+          <StyledSelect defaultValue="en">
+            <option value="en">EN</option>
+            <option value="vi">VI</option>
+          </StyledSelect>
         </Box>
       </Box>
-    </Box>
+    </Container>
   );
 }

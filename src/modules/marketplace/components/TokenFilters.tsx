@@ -20,7 +20,13 @@ interface FormValue {
   price: string;
 }
 
-export default function TokenFilters() {
+interface TokenFiltersProps {
+  onFiltersChange?: (filters: FormValue) => void;
+}
+
+export default function TokenFilters(props: TokenFiltersProps) {
+  const { onFiltersChange } = props;
+
   const { handleFiltersChange, resetFilters } = useToken();
 
   const { handleSubmit: hookFormHandleSubmit, control } = useForm<FormValue>({
@@ -34,7 +40,6 @@ export default function TokenFilters() {
   });
 
   const handleSubmit = hookFormHandleSubmit((data) => {
-    console.log(data);
     handleFiltersChange({
       range: data.priceRange,
       tier: data.tier,
@@ -42,6 +47,10 @@ export default function TokenFilters() {
       time: data.time,
       price: data.price,
     });
+
+    if (onFiltersChange) {
+      onFiltersChange(data);
+    }
   });
 
   return (

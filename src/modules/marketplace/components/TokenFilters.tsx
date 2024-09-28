@@ -20,6 +20,7 @@ interface FormValue {
   theme: string;
   time: string;
   price: string;
+  query: string;
 }
 
 interface TokenFiltersProps {
@@ -38,6 +39,7 @@ export default function TokenFilters(props: TokenFiltersProps) {
       theme: "all",
       time: "dsc",
       price: "asc",
+      query: "",
     },
   });
 
@@ -48,6 +50,7 @@ export default function TokenFilters(props: TokenFiltersProps) {
       theme: data.theme,
       time: data.time,
       price: data.price,
+      query: data.query,
     });
 
     if (onFiltersChange) {
@@ -62,25 +65,33 @@ export default function TokenFilters(props: TokenFiltersProps) {
       spacing={3}
       onSubmit={handleSubmit}
     >
-      <InputBase
-        fullWidth
-        sx={{
-          border: "1px solid #89888B",
-          color: "#89888B",
-          borderRadius: 1,
-          px: 2,
-          py: 1,
-          marginRight: 2,
-        }}
-        placeholder="Quick search"
-        startAdornment={<SearchIcon viewBox="0 0 24 20" />}
-        inputProps={{
-          sx: {
-            "::placeholder": {
-              color: "#d6d6d6",
-            },
-          },
-        }}
+      <Controller
+        control={control}
+        name="query"
+        render={({ field: { onChange, value } }) => (
+          <InputBase
+            value={value}
+            onChange={onChange}
+            fullWidth
+            sx={{
+              border: "1px solid #89888B",
+              color: "#89888B",
+              borderRadius: 1,
+              px: 2,
+              py: 1,
+              marginRight: 2,
+            }}
+            placeholder="Quick search"
+            startAdornment={<SearchIcon viewBox="0 0 24 20" />}
+            inputProps={{
+              sx: {
+                "::placeholder": {
+                  color: "#d6d6d6",
+                },
+              },
+            }}
+          />
+        )}
       />
       <Controller
         control={control}

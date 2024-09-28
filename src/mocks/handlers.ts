@@ -13,8 +13,9 @@ export const handlers = [
     const price = url.searchParams.get("price");
     const time = url.searchParams.get("time");
     const category = url.searchParams.get("category");
+    const query = url.searchParams.get("query");
 
-    console.log({ limit, range, tier, theme, price, start, category });
+    console.log({ limit, range, tier, theme, price, start, category, query });
 
     let tokens = TOKENS;
 
@@ -36,7 +37,7 @@ export const handlers = [
     }
     console.log("tokens after tier ", tokens);
 
-    if (theme && theme !== 'all') {
+    if (theme && theme !== "all") {
       tokens = tokens.filter((token) => token.theme === theme);
     }
     console.log("tokens after theme ", tokens);
@@ -56,6 +57,12 @@ export const handlers = [
       );
     }
     console.log("tokens after price ", tokens);
+
+    if (query) {
+      tokens = tokens.filter((token) =>
+        token.name.toLowerCase().includes(query.toLowerCase())
+      );
+    }
 
     if (start) {
       tokens = tokens.slice(start, start + limit);

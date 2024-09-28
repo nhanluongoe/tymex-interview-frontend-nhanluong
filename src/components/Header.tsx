@@ -1,3 +1,4 @@
+import useToggleShowOnScroll from "@modules/marketplace/hooks/useToggleShowOnScroll";
 import { Box, Container, NativeSelect, styled } from "@mui/material";
 import { NavLink } from "react-router-dom";
 import Button from "./ui/Button";
@@ -64,6 +65,12 @@ const StyledSelect = styled(NativeSelect)({
 });
 
 export default function Header() {
+  const show = useToggleShowOnScroll();
+
+  if (!show) {
+    return null;
+  }
+
   return (
     <Container
       component="header"
@@ -72,6 +79,9 @@ export default function Header() {
         position: "fixed",
         top: 0,
         backgroundColor: "rgba(23, 22, 26, 0.7)",
+        backdropFilter: "blur(10px)",
+        zIndex: 1000,
+        py: 1,
       }}
     >
       <Box

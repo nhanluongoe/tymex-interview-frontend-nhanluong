@@ -7,6 +7,7 @@ export interface Token {
   price: number;
   tier: string;
   theme: string;
+  category: string;
   author: string;
   authorAvatar: string;
 }
@@ -22,6 +23,7 @@ export const TOKENS: Token[] = [
     theme: "halloween",
     createdAt: "2023-01-01T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "upper-body",
   },
   {
     id: 2,
@@ -33,6 +35,7 @@ export const TOKENS: Token[] = [
     theme: "rocknroll",
     createdAt: "2023-01-02T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "accessories",
   },
   {
     id: 3,
@@ -44,6 +47,7 @@ export const TOKENS: Token[] = [
     theme: "halloween",
     createdAt: "2023-01-03T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "lower-body",
   },
   {
     id: 4,
@@ -55,6 +59,7 @@ export const TOKENS: Token[] = [
     theme: "rocknroll",
     createdAt: "2023-01-04T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "upper-body",
   },
   {
     id: 5,
@@ -66,6 +71,7 @@ export const TOKENS: Token[] = [
     theme: "halloween",
     createdAt: "2023-01-05T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "accessories",
   },
   {
     id: 6,
@@ -77,6 +83,7 @@ export const TOKENS: Token[] = [
     theme: "rocknroll",
     createdAt: "2023-01-06T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "upper-body",
   },
   {
     id: 7,
@@ -88,6 +95,7 @@ export const TOKENS: Token[] = [
     theme: "halloween",
     createdAt: "2023-01-07T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "hat",
   },
   {
     id: 8,
@@ -99,6 +107,7 @@ export const TOKENS: Token[] = [
     theme: "rocknroll",
     createdAt: "2023-01-08T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "upper-body",
   },
   {
     id: 9,
@@ -110,6 +119,7 @@ export const TOKENS: Token[] = [
     theme: "halloween",
     createdAt: "2023-01-09T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "lower-body",
   },
   {
     id: 10,
@@ -121,6 +131,7 @@ export const TOKENS: Token[] = [
     theme: "rocknroll",
     createdAt: "2023-01-10T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "upper-body",
   },
   {
     id: 11,
@@ -132,6 +143,7 @@ export const TOKENS: Token[] = [
     theme: "halloween",
     createdAt: "2023-01-11T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "accessories",
   },
   {
     id: 12,
@@ -143,6 +155,7 @@ export const TOKENS: Token[] = [
     theme: "rocknroll",
     createdAt: "2023-01-12T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "upper-body",
   },
   {
     id: 13,
@@ -154,6 +167,7 @@ export const TOKENS: Token[] = [
     theme: "halloween",
     createdAt: "2023-01-13T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "lower-body",
   },
   {
     id: 14,
@@ -165,6 +179,7 @@ export const TOKENS: Token[] = [
     theme: "rocknroll",
     createdAt: "2023-01-14T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "accessories",
   },
   {
     id: 15,
@@ -176,6 +191,7 @@ export const TOKENS: Token[] = [
     theme: "halloween",
     createdAt: "2023-01-15T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "hat",
   },
   {
     id: 16,
@@ -187,6 +203,7 @@ export const TOKENS: Token[] = [
     theme: "rocknroll",
     createdAt: "2023-01-16T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "upper-body",
   },
   {
     id: 17,
@@ -198,6 +215,7 @@ export const TOKENS: Token[] = [
     theme: "halloween",
     createdAt: "2023-01-17T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "accessories",
   },
   {
     id: 18,
@@ -209,6 +227,7 @@ export const TOKENS: Token[] = [
     theme: "rocknroll",
     createdAt: "2023-01-18T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "accessories",
   },
   {
     id: 19,
@@ -220,6 +239,7 @@ export const TOKENS: Token[] = [
     theme: "halloween",
     createdAt: "2023-01-19T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "hat",
   },
   {
     id: 20,
@@ -231,6 +251,7 @@ export const TOKENS: Token[] = [
     theme: "rocknroll",
     createdAt: "2023-01-20T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "lower-body",
   },
   {
     id: 21,
@@ -242,6 +263,7 @@ export const TOKENS: Token[] = [
     theme: "halloween",
     createdAt: "2023-01-21T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "hat",
   },
   {
     id: 22,
@@ -253,6 +275,7 @@ export const TOKENS: Token[] = [
     theme: "rocknroll",
     createdAt: "2023-01-22T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "lower-body",
   },
   {
     id: 23,
@@ -264,6 +287,7 @@ export const TOKENS: Token[] = [
     theme: "halloween",
     createdAt: "2023-01-23T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "lower-body",
   },
   {
     id: 24,
@@ -275,6 +299,7 @@ export const TOKENS: Token[] = [
     theme: "rocknroll",
     createdAt: "2023-01-24T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "accessories",
   },
   {
     id: 25,
@@ -286,6 +311,7 @@ export const TOKENS: Token[] = [
     theme: "halloween",
     createdAt: "2023-01-25T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "lower-body",
   },
   {
     id: 26,
@@ -297,6 +323,7 @@ export const TOKENS: Token[] = [
     theme: "rocknroll",
     createdAt: "2023-01-26T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "lower-body",
   },
   {
     id: 27,
@@ -308,6 +335,7 @@ export const TOKENS: Token[] = [
     theme: "halloween",
     createdAt: "2023-01-27T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "lower-body",
   },
   {
     id: 28,
@@ -319,6 +347,7 @@ export const TOKENS: Token[] = [
     theme: "rocknroll",
     createdAt: "2023-01-28T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "accessories",
   },
   {
     id: 29,
@@ -330,6 +359,7 @@ export const TOKENS: Token[] = [
     theme: "halloween",
     createdAt: "2023-01-29T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "lower-body",
   },
   {
     id: 30,
@@ -341,6 +371,7 @@ export const TOKENS: Token[] = [
     theme: "rocknroll",
     createdAt: "2023-01-30T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "lower-body",
   },
   {
     id: 31,
@@ -352,6 +383,7 @@ export const TOKENS: Token[] = [
     theme: "halloween",
     createdAt: "2023-01-31T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "accessories",
   },
   {
     id: 32,
@@ -363,6 +395,7 @@ export const TOKENS: Token[] = [
     theme: "rocknroll",
     createdAt: "2023-02-01T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "lower-body",
   },
   {
     id: 33,
@@ -374,6 +407,7 @@ export const TOKENS: Token[] = [
     theme: "halloween",
     createdAt: "2023-02-02T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "lower-body",
   },
   {
     id: 34,
@@ -385,6 +419,7 @@ export const TOKENS: Token[] = [
     theme: "rocknroll",
     createdAt: "2023-02-03T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "upper-body",
   },
   {
     id: 35,
@@ -396,6 +431,7 @@ export const TOKENS: Token[] = [
     theme: "halloween",
     createdAt: "2023-02-04T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "lower-body",
   },
   {
     id: 36,
@@ -407,6 +443,7 @@ export const TOKENS: Token[] = [
     theme: "halloween",
     createdAt: "2023-02-04T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "cool",
   },
   {
     id: 37,
@@ -418,5 +455,6 @@ export const TOKENS: Token[] = [
     theme: "halloween",
     createdAt: "2023-02-04T00:00:00Z",
     authorAvatar: "/author.png",
+    category: "cool",
   },
 ];

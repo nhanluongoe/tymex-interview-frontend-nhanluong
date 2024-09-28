@@ -12,12 +12,17 @@ export const handlers = [
     const theme = url.searchParams.get("theme");
     const price = url.searchParams.get("price");
     const time = url.searchParams.get("time");
+    const category = url.searchParams.get("category");
 
-    console.log({ limit, range, tier, theme, price, start });
+    console.log({ limit, range, tier, theme, price, start, category });
 
     let tokens = TOKENS;
 
     console.log("tokens: ", tokens);
+
+    if (category && category !== "all") {
+      tokens = tokens.filter((token) => token.category === category);
+    }
 
     if (range) {
       const [min, max] = range.split(",");

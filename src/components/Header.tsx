@@ -1,6 +1,10 @@
+import useBreakpoints from "@hooks/useBreakpoints";
 import useToggleShowOnScroll from "@modules/marketplace/hooks/useToggleShowOnScroll";
-import { Box, Container, NativeSelect, styled } from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import { Box, Container, Drawer, styled } from "@mui/material";
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
+import LanguageSelector from "./LanguageSelector";
 import Button from "./ui/Button";
 
 interface Navigation {
@@ -57,18 +61,55 @@ const StyledNavLink = styled(NavLink)(({ theme }) => ({
   },
 }));
 
-const StyledSelect = styled(NativeSelect)({
-  color: "white",
-  "& .MuiNativeSelect-icon": {
-    color: "white",
-  },
-});
-
 export default function Header() {
   const show = useToggleShowOnScroll();
 
+  const { isTablet } = useBreakpoints();
+
+  const [open, setOpen] = useState(false);
+
+  const toggleDrawer = (newOpen: boolean) => () => {
+    setOpen(newOpen);
+  };
+
   if (!show) {
     return null;
+  }
+
+  if (isTablet) {
+    return (
+      <Box sx={{ position: "fixed", right: 0, zIndex: 1000, p: 0.5 }}>
+        <Button onClick={toggleDrawer(true)} size="small">
+          <MenuIcon />
+        </Button>
+        <Drawer
+          open={open}
+          onClose={toggleDrawer(false)}
+          sx={{
+            "& .MuiDrawer-paper": {
+              backgroundColor: "rgba(23, 22, 26, 0.7)",
+              backdropFilter: "blur(10px)",
+              p: 2,
+            },
+          }}
+        >
+          <Box sx={{ mb: 2 }}>
+            {NAVIGATION.map((navigation) => (
+              <Box
+                key={navigation.name}
+                sx={{ p: 1 }}
+                onClick={toggleDrawer(false)}
+              >
+                <StyledNavLink to={navigation.path}>
+                  {navigation.label}
+                </StyledNavLink>
+              </Box>
+            ))}
+          </Box>
+          <LanguageSelector />
+        </Drawer>
+      </Box>
+    );
   }
 
   return (
@@ -112,15 +153,7 @@ export default function Header() {
           ))}
         </Box>
 
-        <Box
-          sx={{ minWidth: "25%", display: "flex", justifyContent: "center" }}
-        >
-          <Button sx={{ mr: 2 }}>Connect Wallet</Button>
-          <StyledSelect defaultValue="en">
-            <option value="en">EN</option>
-            <option value="vi">VI</option>
-          </StyledSelect>
-        </Box>
+        <LanguageSelector />
       </Box>
     </Container>
   );

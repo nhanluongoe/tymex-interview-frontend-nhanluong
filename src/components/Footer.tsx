@@ -1,9 +1,10 @@
+import useBreakpoints from "@hooks/useBreakpoints";
 import { Box, Container, Divider, Stack, Typography } from "@mui/material";
 import React from "react";
-import FooterNavigation from "./FooterNavigation";
-import FooterContactUs from "./FooterContactUs";
-import FooterSubscription from "./FooterSubscription";
 import { Link } from "react-router-dom";
+import FooterContactUs from "./FooterContactUs";
+import FooterNavigation from "./FooterNavigation";
+import FooterSubscription from "./FooterSubscription";
 
 interface Section {
   title: string;
@@ -20,6 +21,7 @@ const SECTION: Section[] = [
   {
     title: "contact us",
     content: <FooterContactUs />,
+    width: 25,
   },
   {
     title: "subscribe to receive our latest update",
@@ -29,6 +31,8 @@ const SECTION: Section[] = [
 ];
 
 export default function Footer() {
+  const { isTablet } = useBreakpoints();
+
   return (
     <Container
       component="footer"
@@ -42,6 +46,7 @@ export default function Footer() {
       <Box
         sx={{
           display: "flex",
+          flexDirection: isTablet ? "column" : "row",
           justifyContent: "space-between",
           width: "100%",
         }}
@@ -49,13 +54,15 @@ export default function Footer() {
         {SECTION.map((section) => (
           <Box
             key={section.title}
-            sx={{ width: section.width ? `${section.width}%` : undefined }}
+            sx={{
+              width: section.width && !isTablet ? `${section.width}%` : "100%",
+            }}
           >
             <Typography
               sx={{
                 textTransform: "uppercase",
                 fontWeight: "bold",
-                mb: 2,
+                my: 2,
                 fontSize: 20,
               }}
             >

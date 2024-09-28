@@ -14,7 +14,10 @@ export default function RootLayout() {
       }}
     >
       <Header />
-      <Box component="main" sx={{ flexGrow: 1 }}>
+      <Box
+        component="main"
+        sx={{ flexGrow: 1, position: "relative", zIndex: 1 }}
+      >
         <Outlet />
       </Box>
       <Footer />

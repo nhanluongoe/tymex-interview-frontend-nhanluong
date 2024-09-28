@@ -3,6 +3,7 @@ import RangeInput from "@components/ui/RangeInput";
 import {
   Box,
   FormControl,
+  InputBase,
   MenuItem,
   Select,
   Stack,
@@ -11,6 +12,7 @@ import {
 import { Controller, useForm } from "react-hook-form";
 import { useToken } from "../contexts/TokenContext";
 import CrossIcon from "./icons/CrossIcon";
+import SearchIcon from "./icons/SearchIcon";
 
 interface FormValue {
   priceRange: [number, number];
@@ -54,7 +56,32 @@ export default function TokenFilters(props: TokenFiltersProps) {
   });
 
   return (
-    <Stack component="form" sx={{ px: 4 }} spacing={3} onSubmit={handleSubmit}>
+    <Stack
+      component="form"
+      sx={{ px: 4, mt: 3 }}
+      spacing={3}
+      onSubmit={handleSubmit}
+    >
+      <InputBase
+        fullWidth
+        sx={{
+          border: "1px solid #89888B",
+          color: "#89888B",
+          borderRadius: 1,
+          px: 2,
+          py: 1,
+          marginRight: 2,
+        }}
+        placeholder="Quick search"
+        startAdornment={<SearchIcon viewBox="0 0 24 20" />}
+        inputProps={{
+          sx: {
+            "::placeholder": {
+              color: "#d6d6d6",
+            },
+          },
+        }}
+      />
       <Controller
         control={control}
         name="priceRange"

@@ -61,8 +61,6 @@ export default function MarketPlacePage() {
           container
           sx={{
             px: isTablet ? 1 : 7,
-            // display: "flex",
-            // maxWidth: "100%",
           }}
         >
           {!isTablet && (

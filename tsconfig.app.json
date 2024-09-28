@@ -29,6 +29,7 @@
       "@libs/*": ["src/libs/*"],
       "@styles/*": ["src/styles/*"],
       "@assets/*": ["src/assets/*"],
+      "@hooks/*": ["src/hooks/*"],
     }
   },
   "include": ["src"]

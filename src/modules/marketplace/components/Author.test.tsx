@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Author from "../components/Author";
+import Author from "./Author";
 import { describe, expect, it } from "vitest";
 
 describe("Author component", () => {

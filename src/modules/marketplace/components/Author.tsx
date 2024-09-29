@@ -1,5 +1,4 @@
 import { Box, Typography } from "@mui/material";
-import React from "react";
 import VerifiedIcon from "./icons/VerifiedIcon";
 
 interface AuthorAvatarProps {
@@ -37,6 +36,7 @@ export default function Author(props: AuthorAvatarProps) {
         ></Box>
         {isVerified && (
           <VerifiedIcon
+            data-testid="author-verified-icon"
             width={12}
             height={12}
             sx={{

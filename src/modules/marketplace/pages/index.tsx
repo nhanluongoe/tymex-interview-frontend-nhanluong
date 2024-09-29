@@ -77,31 +77,37 @@ export default function MarketPlacePage() {
                         <Box sx={{ maxWidth: '100%', my: 3 }}>
                             <Tabs />
                         </Box>
-                        <Grid2 container spacing={2} columns={12}>
-                            {tokens.map((token) => (
-                                <Grid2
-                                    size={{
-                                        xs: 6,
-                                        md: 4,
-                                        lg: 3,
-                                    }}
-                                    key={token.id}
-                                >
-                                    <TokenCard {...token} />
+                        {tokens.length ? (
+                            <>
+                                <Grid2 container spacing={2} columns={12}>
+                                    {tokens.map((token) => (
+                                        <Grid2
+                                            size={{
+                                                xs: 6,
+                                                md: 4,
+                                                lg: 3,
+                                            }}
+                                            key={token.id}
+                                        >
+                                            <TokenCard {...token} />
+                                        </Grid2>
+                                    ))}
                                 </Grid2>
-                            ))}
-                        </Grid2>
 
-                        <Box sx={{ textAlign: 'center', my: 6 }}>
-                            {remain && (
-                                <Button
-                                    sx={{ mx: 'auto', width: '20%' }}
-                                    onClick={fetchNextPage}
-                                >
-                                    View More
-                                </Button>
-                            )}
-                        </Box>
+                                <Box sx={{ textAlign: 'center', my: 6 }}>
+                                    {remain && (
+                                        <Button
+                                            sx={{ mx: 'auto', width: '20%' }}
+                                            onClick={fetchNextPage}
+                                        >
+                                            View More
+                                        </Button>
+                                    )}
+                                </Box>
+                            </>
+                        ) : (
+                            <Empty />
+                        )}
                     </Grid2>
                 </Grid2>
                 <Box
@@ -110,6 +116,20 @@ export default function MarketPlacePage() {
                     sx={{ width: '100%' }}
                 ></Box>
             </Box>
+        </Box>
+    )
+}
+
+function Empty() {
+    return (
+        <Box
+            display="flex"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            textAlign="center"
+        >
+            <h2>No tokens found</h2>
         </Box>
     )
 }

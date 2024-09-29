@@ -50,6 +50,7 @@ export function TokenProvider({ children }: { children: React.ReactNode }) {
         getNextPageParam: (lastPage) => {
             return lastPage.data.start + lastPage.data.limit
         },
+        throwOnError: true,
     })
 
     const handleFiltersChange = (filters: Filters) => {

@@ -60,7 +60,11 @@ export default function TokenCard(props: TokenCardProps) {
           {name}
         </Typography>
         <Box sx={{ display: "flex", alignItems: "center" }}>
-          <EthIcon sx={{ mr: 1, width: "8px" }} viewBox="0 0 8 13" />
+          <EthIcon
+            sx={{ mr: 1, width: "8px" }}
+            viewBox="0 0 8 13"
+            data-testid="eth-icon"
+          />
           <Typography>{price} ETH</Typography>
         </Box>
       </Box>

@@ -1,12 +1,12 @@
+import queryClient from '@libs/react-query.ts'
+import { ThemeProvider } from '@mui/material'
+import router from '@routes/index.tsx'
+import theme from '@styles/theme.ts'
+import { QueryClientProvider } from '@tanstack/react-query'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { RouterProvider } from 'react-router-dom'
-import router from '@routes/index.tsx'
 import './styles/index.css'
-import { QueryClientProvider } from '@tanstack/react-query'
-import queryClient from '@libs/react-query.ts'
-import { ThemeProvider } from '@mui/material'
-import theme from '@styles/theme.ts'
 
 async function enableMocking() {
     const { worker } = await import('./mocks/browser.ts')

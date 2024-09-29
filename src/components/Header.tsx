@@ -83,6 +83,7 @@ export default function Header() {
           <MenuIcon />
         </Button>
         <Drawer
+          data-testid="drawer"
           open={open}
           onClose={toggleDrawer(false)}
           sx={{

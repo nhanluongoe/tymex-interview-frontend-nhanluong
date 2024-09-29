@@ -11,6 +11,7 @@ describe('TokenService', () => {
                 data: [],
                 limit: 10,
                 start: 0,
+                remain: true,
             }
             ;(http.get as Mock).mockResolvedValue({ data: mockResponse })
 
@@ -27,6 +28,7 @@ describe('TokenService', () => {
                 data: [],
                 limit: 5,
                 start: 10,
+                remain: true,
             }
             const params: Partial<TokenParams> = {
                 start: 10,

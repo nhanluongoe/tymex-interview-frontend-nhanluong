@@ -63,7 +63,7 @@ export const handlers = [
             tokens = tokens.slice(0, limit)
         }
 
-        const remain = tokens.length >= limit &&  start + limit < TOKENS.length
+        const remain = tokens.length >= limit && start + limit < TOKENS.length
 
         const response = {
             limit,

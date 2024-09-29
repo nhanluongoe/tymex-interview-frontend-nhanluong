@@ -1,5 +1,7 @@
 import http from '@libs/axios'
 
+const ENDPOINT = import.meta.env.VITE_API_ENDPOINT || ''
+
 export interface Token {
     id: number
     name: string
@@ -55,6 +57,8 @@ export class TokenService {
             query,
         })
 
-        return http.get<TokenResponse>(`/token/?${URLparams.toString()}`)
+        return http.get<TokenResponse>(
+            `${ENDPOINT}/token/?${URLparams.toString()}`
+        )
     }
 }

@@ -50,6 +50,7 @@ export default function Footer() {
           justifyContent: "space-between",
           width: "100%",
         }}
+        data-testid="section-container"
       >
         {SECTION.map((section) => (
           <Box

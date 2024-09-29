@@ -30,6 +30,7 @@ export interface TokenResponse {
     data: Token[]
     limit: number
     start: number
+    remain: boolean
 }
 
 export class TokenService {

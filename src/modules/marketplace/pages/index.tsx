@@ -11,7 +11,7 @@ import TokenFilters from '../components/TokenFilters'
 import { useToken } from '../contexts/TokenContext'
 
 export default function MarketPlacePage() {
-    const { tokens, fetchNextPage } = useToken()
+    const { tokens, remain, fetchNextPage } = useToken()
     const { isTablet } = useBreakpoints()
     const [showFiltersOnTablet, setShowFiltersOnTablet] = useState(false)
 
@@ -93,12 +93,14 @@ export default function MarketPlacePage() {
                         </Grid2>
 
                         <Box sx={{ textAlign: 'center', my: 6 }}>
-                            <Button
-                                sx={{ mx: 'auto', width: '20%' }}
-                                onClick={fetchNextPage}
-                            >
-                                View More
-                            </Button>
+                            {remain && (
+                                <Button
+                                    sx={{ mx: 'auto', width: '20%' }}
+                                    onClick={fetchNextPage}
+                                >
+                                    View More
+                                </Button>
+                            )}
                         </Box>
                     </Grid2>
                 </Grid2>

@@ -15,20 +15,7 @@ export const handlers = [
         const category = url.searchParams.get('category')
         const query = url.searchParams.get('query')
 
-        console.log({
-            limit,
-            range,
-            tier,
-            theme,
-            price,
-            start,
-            category,
-            query,
-        })
-
         let tokens = TOKENS
-
-        console.log('tokens: ', tokens)
 
         if (category && category !== 'all') {
             tokens = tokens.filter((token) => token.category === category)
@@ -45,12 +32,10 @@ export const handlers = [
         if (tier && tier !== 'all') {
             tokens = tokens.filter((token) => token.tier === tier)
         }
-        console.log('tokens after tier ', tokens)
 
         if (theme && theme !== 'all') {
             tokens = tokens.filter((token) => token.theme === theme)
         }
-        console.log('tokens after theme ', tokens)
 
         if (time) {
             tokens = tokens.sort((a, b) =>
@@ -59,14 +44,12 @@ export const handlers = [
                     : b.createdAt.localeCompare(a.createdAt)
             )
         }
-        console.log('tokens after time ', tokens)
 
         if (price) {
             tokens = tokens.sort((a, b) =>
                 price === 'asc' ? a.price - b.price : b.price - a.price
             )
         }
-        console.log('tokens after price ', tokens)
 
         if (query) {
             tokens = tokens.filter((token) =>
@@ -79,12 +62,18 @@ export const handlers = [
         } else {
             tokens = tokens.slice(0, limit)
         }
-        console.log('tokens after pagination ', tokens)
 
-        return HttpResponse.json({
+        const remain = tokens.length >= limit &&  start + limit < TOKENS.length
+
+        const response = {
             limit,
             start,
             data: tokens,
-        })
+            remain,
+        }
+
+        console.log(response)
+
+        return HttpResponse.json(response)
     }),
 ]

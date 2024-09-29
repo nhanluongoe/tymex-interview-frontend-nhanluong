@@ -6,6 +6,7 @@ type Filters = Partial<TokenParams>
 
 interface TokenContextType {
     tokens: Token[]
+    remain: boolean
     filters: Filters
     handleFiltersChange: (filters: Filters) => void
     resetFilters: () => void
@@ -60,12 +61,14 @@ export function TokenProvider({ children }: { children: React.ReactNode }) {
     }
 
     const tokens = data?.pages.flatMap((page) => page.data.data) || []
+    const remain = data?.pages[data.pages.length - 1].data.remain || false
 
     return (
         <TokenContext.Provider
             value={{
                 filters,
                 tokens,
+                remain,
                 handleFiltersChange,
                 resetFilters,
                 fetchNextPage,

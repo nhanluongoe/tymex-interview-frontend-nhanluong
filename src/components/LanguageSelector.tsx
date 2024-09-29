@@ -10,7 +10,10 @@ const StyledSelect = styled(NativeSelect)({
 
 export default function LanguageSelector() {
   return (
-    <Box sx={{ minWidth: "25%", display: "flex", justifyContent: "center" }}>
+    <Box
+      sx={{ minWidth: "25%", display: "flex", justifyContent: "center" }}
+      data-testid="language-selector"
+    >
       <Button sx={{ mr: 2 }}>Connect Wallet</Button>
       <StyledSelect defaultValue="en">
         <option value="en">EN</option>

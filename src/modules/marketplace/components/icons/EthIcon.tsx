@@ -3,7 +3,7 @@ import { SvgIcon, SvgIconProps } from "@mui/material";
 export default function EthIcon(props: SvgIconProps) {
   return (
     <SvgIcon {...props}>
-      <g clip-path="url(#clip0_28_376)">
+      <g clipPath="url(#clip0_28_376)">
         <path
           d="M3.99878 0.538452L3.91144 0.832863V9.37598L3.99878 9.46244L7.99759 7.11838L3.99878 0.538452Z"
           fill="#C1CCF7"

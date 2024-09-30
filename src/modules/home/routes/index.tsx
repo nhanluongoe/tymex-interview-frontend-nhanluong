@@ -1,5 +1,7 @@
 import { RouteObject } from 'react-router-dom'
-import HomePage from '../pages'
+import { lazy } from 'react'
+
+const HomePage = lazy(() => import('../pages'))
 
 const homeRoutes: RouteObject[] = [
     {

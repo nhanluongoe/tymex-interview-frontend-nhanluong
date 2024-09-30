@@ -1,11 +1,14 @@
 import Fallback from '@components/Fallback.tsx'
-import NotFound from '@components/NotFound'
+import LoadingFallback from '@components/LoadingFallback'
 import RootLayout from '@components/layout/RootLayout'
 import homeRoutes from '@modules/home/routes'
 import marketplaceRoutes from '@modules/marketplace/routes'
 import { QueryErrorResetBoundary } from '@tanstack/react-query'
+import { lazy, Suspense } from 'react'
 import { ErrorBoundary } from 'react-error-boundary'
 import { createBrowserRouter, Outlet } from 'react-router-dom'
+
+const NotFound = lazy(() => import('@components/NotFound'))
 
 const router = createBrowserRouter([
     {
@@ -18,7 +21,9 @@ const router = createBrowserRouter([
                             <Fallback onAction={resetErrorBoundary} />
                         )}
                     >
-                        <Outlet />
+                        <Suspense fallback={<LoadingFallback />}>
+                            <Outlet />
+                        </Suspense>
                     </ErrorBoundary>
                 )}
             </QueryErrorResetBoundary>

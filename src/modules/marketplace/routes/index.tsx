@@ -1,6 +1,8 @@
 import { RouteObject } from 'react-router-dom'
-import MarketPlacePage from '../pages'
 import { TokenProvider } from '../contexts/TokenContext'
+import { lazy } from 'react'
+
+const MarketPlacePage = lazy(() => import('../pages'))
 
 const routes: RouteObject[] = [
     {
